@@ -12,10 +12,22 @@ Bot = Client(
 )
 
 
+types = [
+    "lines",
+    "spaces",
+    "words",
+    "links",
+    "urls",
+    "domains"
+]
+
 @Bot.on_message(filters.command("start"))
 async def start(bot, update):
+    text = f"Hi {update.from_user.mention}, I am a simple string extract bot." + "\n\n" +
+    "Send /extract {type} as reply a message for extracting" + "\n\n" +
+    "**Types:**" + ", ".join(types) + "\n\n" + "Made by @FayasNoushad"
     await update.reply_text(
-        text=f"Hi {update.from_user.mention}, I am a simple string extract bot.\n\nMade by @FayasNoushad",
+        text=text,
         quote=True
     )
 
@@ -25,14 +37,6 @@ async def extract(bot, update):
     if " " not in update.text or not update.reply_to_message.text or not update.reply_to_message.caption:
         await update.reply_text("Please send command with type as reply to a string")
     else:
-        types = [
-            "lines",
-            "spaces",
-            "words",
-            "links",
-            "urls",
-            "domains"
-        ]
         type = update.text.split()[1]
         string = update.reply_to_message.text if update.reply_to_message.text else update.reply_to_message.caption
         if type not in types:
