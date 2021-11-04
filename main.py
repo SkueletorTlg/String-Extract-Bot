@@ -40,7 +40,7 @@ async def extract(bot, update):
         type = update.text.split()[1]
         string = update.reply_to_message.text if update.reply_to_message.text else update.reply_to_message.caption
         if type not in types:
-            await update.reply_text("Invalid type")
+            await update.reply_text("`Invalid type!`")
         else:
             if type == "lines":
                 text = string_extract.lines(string)
