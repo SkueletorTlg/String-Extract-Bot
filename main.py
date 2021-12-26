@@ -26,9 +26,7 @@ types = [
 
 @Bot.on_message(filters.command("start"))
 async def start(bot, update):
-    text = f"Hi, I am a simple string extract bot." + "\n\n" +
-    "Send /extract {type} as reply a message for extracting" + "\n\n" +
-    "**Types:**" + ", ".join(types) + "\n\n" + "Made by @FayasNoushad"
+    text = f"Hi {update.from_user.mention}, I am a simple string extract bot." + "\n\n" + "Send /extract {type} as reply a message for extracting" + "\n\n" + "**Types:**" + ", ".join(types) + "\n\n" + "Made by @DKzippO"
     await update.reply_text(
         text=text,
         quote=True
